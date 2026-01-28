@@ -101,7 +101,7 @@ class AirbnkSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        raise NotImplementedError
+        return self._device.state
 
     @property
     def device_class(self):
