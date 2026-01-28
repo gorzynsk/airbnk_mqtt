@@ -90,22 +90,23 @@ class AirbnkLock(CoverEntity):
     @property
     def is_opening(self):
         """Return if cover is opening."""
-        return False
+        return self._device.curr_state == LOCK_STATE_OPERATING
 
     @property
     def is_closing(self):
         """Return if cover is closing."""
-        return False
+        return self._device.curr_state == LOCK_STATE_OPERATING
 
     @property
     def is_open(self):
         """Return if the cover is open or not."""
-        return None
+        return self._device.curr_state == LOCK_STATE_UNLOCKED
+        
 
     @property
     def is_closed(self):
         """Return if the cover is closed or not."""
-        return None
+        return self._device.curr_state == LOCK_STATE_LOCKED
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
